@@ -1,40 +1,73 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-.search-bar {
-  margin: 20px;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
-.search-bar input {
-  border: 1px solid #ccc;
-  height: 45px;
-  width: 75%;
-  margin: 0 auto;
-  border-radius: 4px;
-  font-size: 20px;
-  color: #666;
-  padding: 5px 10px ;
+.nav {
+    width: 100%;
+    height: 40px;
+    background: #dddddd;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0;
 }
 
-.list-group-item {
-  margin: 5px;
-  cursor: pointer;
+.nav > ul > li {
+    display: inline;
+    padding-right: 10px;
+    font-size: 16px;
 }
 
-.list-group-item:hover {
-  background-color: #eee;
+/******** ARTICLES ********/
+.article-list-image {
+    width: 100%;
 }
 
-.details {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-top: 0;
-  border-radius: 4px
+
+/******** Single ARTICLE ********/
+.header-article {
+
 }
 
-.media-object {
-  width: 300px;
+.title-block-article {
+    padding-right: 10px;
+}
+
+.date-published-article {
+    font-size: 14px;
+    color: #777;
+}
+
+.user-block-article {
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+.user-avatar-article {
+    height: 120px;
+    display: inline-block;
+}
+
+.username-article {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.user-position-article {
+    color: #555;
+}
+
+
+/******** USERPROFILE ********/
+.badge {
+    margin: 5px;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: tomato;
+}
+
+.about-me {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 10px;
 }

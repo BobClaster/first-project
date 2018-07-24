@@ -1,46 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import ArticleList from './components/article_list';
+import Nav from './container/Navbar';
+import AllArticle from './components/AllArticle';
+import ArticleDetail from './components/ArticleDetail';
+import UserProfile from './components/UserProfile';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      articles: [],
-      numb: 0,
-      next: null,
-      previous: null,
-      selectedArticle: null
-    };
-  }
-
-  componentWillMount() {
-    fetch("http://127.0.0.1:8000/articles/api")
-    .then(res => {
-      return res.json();
-    }).then(data => {
-      this.setState({
-        articles: data.results,
-        numb: data.count,
-        next: data.next,
-        previous: data.previous});
-      console.log("state", this.state);
-    });
-  }
-
-  render() {
+const Urls = () => {
     return (
-      <div className="container">
-        <ArticleList
-          onArticleSelect={article => this.setState({selectedArticle: article})}
-          articles={this.state.articles}
-        />
-      </div>
+        <div className='container'>
+            <div className="col-md-12" style={{padding: "0 0 20px 0"}}>
+                <Nav />
+            </div>
+            <Router>
+                <div>
+                    <Route exact path="/articles" component={AllArticle} />
+                    <Route path="/articles/:id" component={ArticleDetail} />
+                    <Route path="/user/:id" component={UserProfile} />
+                </div>
+            </Router>
+        </div>
+    )
+};
 
+ReactDOM.render(Urls(), document.getElementById('root')
 
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+);
