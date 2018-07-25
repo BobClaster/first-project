@@ -1,28 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Nav from './container/Navbar';
-import AllArticle from './components/AllArticle';
-import ArticleDetail from './components/ArticleDetail';
-import UserProfile from './components/UserProfile';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import createHistory from 'history/createBrowserHistory';
+import {Route, Switch} from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import Login from './Auth/Login';
+import PrivateRoute from './Auth/PrivateRouter';
+// import './index.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import App from './App';
+import configureStore from './store';
 
-const Urls = () => {
-    return (
-        <div className='container'>
-            <div className="col-md-12" style={{padding: "0 0 20px 0"}}>
-                <Nav />
-            </div>
-            <Router>
-                <div>
-                    <Route exact path="/articles" component={AllArticle} />
-                    <Route path="/articles/:id" component={ArticleDetail} />
-                    <Route path="/user/:id" component={UserProfile} />
-                </div>
-            </Router>
-        </div>
-    )
-};
+const history = createHistory();
+const store = configureStore(history);
 
-ReactDOM.render(Urls(), document.getElementById('root')
 
-);
+ReactDOM.render((
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Switch>
+                <Route exact path="/login/" component={Login} />
+                <PrivateRoute path="/" component={App}/>
+            </Switch>
+        </ConnectedRouter>
+    </Provider>
+), document.getElementById('root'));
